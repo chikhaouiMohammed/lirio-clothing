@@ -32,7 +32,7 @@ function App() {
         >
           <Route index element={<ProductManagement />} />
           <Route path="orders" element={<OrderManagement />} />
-          <Route path="social" element={<SocialMediaManagement />} />
+          <Route path="social" element={<SocialMediaManagement />} />  
         </Route>
 
         <Route
