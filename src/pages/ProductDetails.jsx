@@ -241,7 +241,7 @@ const ProductDetails = () => {
               <div className="flex flex-col w-full gap-4">
                 <button
                   onClick={handleAddToCart}
-                  className="bg-transparent px-6 py-3 rounded-md text-darkGray border-darkGray border-[1px] font-semibold transition-all duration-300 hover:scale-105"
+                  className="bg-transparent px-6 py-3 disabled:opacity-40 rounded-md text-darkGray border-darkGray border-[1px] font-semibold transition-all duration-300 hover:scale-105"
                   disabled={!selectedColor || !selectedSize || stock === 0} // Disable if no color/size is selected or if stock is 0
                 >
                   Add to Cart
@@ -249,7 +249,8 @@ const ProductDetails = () => {
   
                 <button 
                   onClick={handleBuyNow} 
-                  className="bg-gold px-6 py-3 rounded-md text-white font-semibold transition-all duration-300 hover:scale-105"
+                  className="bg-gold px-6 py-3 rounded-md disabled:opacity-40 text-white font-semibold transition-all duration-300 hover:scale-105"
+                  disabled={!selectedColor || !selectedSize || stock === 0}
                 >
                   Buy It Now
                 </button>
