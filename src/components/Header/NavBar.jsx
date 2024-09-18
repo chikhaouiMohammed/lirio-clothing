@@ -74,7 +74,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="container px-20 pt-5 mx-auto w-full flex justify-between items-center text-darkGray">
+      <nav className="container lg:px-20 px-7 pt-5 mx-auto w-full flex justify-between items-center text-darkGray">
         <Link to='/' className='md:w-[150px] md:h-[90px] w-[100px] h-[65px] cursor-pointer'>
           <img className='w-full h-full' src={logo} alt="Logo" />
         </Link>

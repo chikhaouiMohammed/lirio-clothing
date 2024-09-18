@@ -130,15 +130,28 @@ const ProductDetails = () => {
           <div className="w-full flex flex-col md:flex-row justify-between items-start">
             {/* Product Images */}
             <div className="w-full md:flex-shrink-0 md:w-1/2 h-auto">
+              {/* For small screens, display images in a slider */}
               <div className="md:mb-10 overflow-hidden rounded-lg">
-                <img src={product.images[0]} alt="Product" />
-              </div>
-              <div className="grid grid-cols-2 gap-y-4">
-                {product.images.slice(1).map((img, index) => (
-                  <div key={index} className="max-w-[250px] overflow-hidden rounded-lg">
-                    <img className="w-full" src={img} alt={`Thumbnail ${index + 1}`} />
+                <div className="block md:hidden">
+                  <div className="flex overflow-x-scroll no-scrollbar space-x-4">
+                    <img src={product.images[0]} alt="Product" className="rounded-lg w-full max-w-xs" />
+                    {product.images.slice(1).map((img, index) => (
+                      <img key={index} src={img} alt={`Thumbnail ${index + 1}`} className="rounded-lg w-full max-w-xs" />
+                    ))}
                   </div>
-                ))}
+                </div>
+  
+                {/* For large devices, display images in the current grid format */}
+                <div className="hidden md:block">
+                  <img src={product.images[0]} alt="Product" className="rounded-lg" />
+                  <div className="grid grid-cols-2 gap-y-4 mt-4">
+                    {product.images.slice(1).map((img, index) => (
+                      <div key={index} className="max-w-[250px] overflow-hidden rounded-lg">
+                        <img className="w-full" src={img} alt={`Thumbnail ${index + 1}`} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
             {/* Product Details */}
@@ -152,10 +165,10 @@ const ProductDetails = () => {
                   <span>{`DA ${product.finalPrice.toFixed(2)} DZD`}</span>
                 )}
               </h3>
-              <div className="bg-darkGray rounded-md px-7  py-2 text-xs text-white flex justify-center items-center font-roboto">
+              <div className="bg-darkGray rounded-md px-7 py-2 text-xs text-white flex justify-center items-center font-roboto">
                 {product.totalStock === 0 ? 'Sold Out' : 'Sale'}
               </div>
-
+  
               {/* Color Dropdown */}
               <div className="mb-4 w-full">
                 <label className="block text-sm font-semibold mb-2">Color</label>
@@ -172,39 +185,39 @@ const ProductDetails = () => {
                   ))}
                 </select>
               </div>
-
+  
               {/* Size Dropdown */}
               <div className="mb-4 w-full">
                 <label className="block text-sm font-semibold mb-2">Size</label>
                 <select
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                    value={selectedSize}
-                    onChange={(e) => setSelectedSize(e.target.value)}
-                    disabled={!selectedColor || !product.productColors.find(colorObj => colorObj.colorName === selectedColor)?.sizes}
-                  >
-                    <option value="">Select Size</option>
-                    {selectedColor && product.productColors
-                      .find(colorObj => colorObj.colorName === selectedColor)?.sizes && 
-                      Object.keys(product.productColors
-                        .find(colorObj => colorObj.colorName === selectedColor)
-                        .sizes).map((size, index) => {
-                          const sizeStock = product.productColors
-                            .find(colorObj => colorObj.colorName === selectedColor)
-                            .sizes[size];
-                          return (
-                            <option
-                              key={index}
-                              value={size}
-                              disabled={sizeStock <= 0} // Disable size if stock is 0 or less
-                            >
-                              {sizeStock <= 0 ? `${size} - Unavailable` : size}
-                            </option>
-                          );
-                      })
-                    }
-                  </select>
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  value={selectedSize}
+                  onChange={(e) => setSelectedSize(e.target.value)}
+                  disabled={!selectedColor || !product.productColors.find(colorObj => colorObj.colorName === selectedColor)?.sizes}
+                >
+                  <option value="">Select Size</option>
+                  {selectedColor && product.productColors
+                    .find(colorObj => colorObj.colorName === selectedColor)?.sizes && 
+                    Object.keys(product.productColors
+                      .find(colorObj => colorObj.colorName === selectedColor)
+                      .sizes).map((size, index) => {
+                        const sizeStock = product.productColors
+                          .find(colorObj => colorObj.colorName === selectedColor)
+                          .sizes[size];
+                        return (
+                          <option
+                            key={index}
+                            value={size}
+                            disabled={sizeStock <= 0} // Disable size if stock is 0 or less
+                          >
+                            {sizeStock <= 0 ? `${size} - Unavailable` : size}
+                          </option>
+                        );
+                    })
+                  }
+                </select>
               </div>
-
+  
               {/* Quantity Counter */}
               <div className="flex font-montserrat items-center gap-2 border-darkGray border-[1.2px] rounded-md mb-4">
                 <button
@@ -223,28 +236,27 @@ const ProductDetails = () => {
                   +
                 </button>
               </div>
-
+  
               {/* Buttons */}
               <div className="flex flex-col w-full gap-4">
-              <button
-                onClick={handleAddToCart}
-                className="bg-transparent px-6 py-3 rounded-md text-darkGray border-darkGray border-[1px] font-semibold transition-all duration-300 hover:scale-105"
-                disabled={
-                  !selectedColor || !selectedSize || stock === 0
-                } // Disable if no color/size is selected or if stock is 0
-              >
-                Add to Cart
-              </button>
-
+                <button
+                  onClick={handleAddToCart}
+                  className="bg-transparent px-6 py-3 rounded-md text-darkGray border-darkGray border-[1px] font-semibold transition-all duration-300 hover:scale-105"
+                  disabled={!selectedColor || !selectedSize || stock === 0} // Disable if no color/size is selected or if stock is 0
+                >
+                  Add to Cart
+                </button>
+  
                 <button 
                   onClick={handleBuyNow} 
-                  className="bg-gold px-6 py-3 rounded-md text-white font-semibold transition-all duration-300 hover:scale-105">
+                  className="bg-gold px-6 py-3 rounded-md text-white font-semibold transition-all duration-300 hover:scale-105"
+                >
                   Buy It Now
                 </button>
               </div>
             </div>
           </div>
-
+  
           {/* Related Products Section */}
           <div className="py-10">
             <h2 className="text-3xl font-semibold mb-6">Related Products</h2>
@@ -271,12 +283,9 @@ const ProductDetails = () => {
                         <h2 className="text-gray-400 text-lg line-through">
                           {`DA ${product.price.toFixed(2)} DZD`}
                         </h2>
-                      ):
-                      (
-                        <h2 className="text-gray-400 h-6 line-through">
-                        </h2>
-                      )
-                    }
+                      ) : (
+                        <h2 className="text-gray-400 h-6 line-through"></h2>
+                      )}
                       <h2 className="font-montserrat text-xl font-medium">
                         {`DA ${product.finalPrice?.toFixed(2) || product.price.toFixed(2)} DZD`}
                       </h2>
@@ -290,9 +299,10 @@ const ProductDetails = () => {
           </div>
         </div>
       ) : null}
-      <Footer/>
+      <Footer />
     </div>
   );
+  
 };
 
 export default ProductDetails;

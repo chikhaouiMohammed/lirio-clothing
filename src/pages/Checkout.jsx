@@ -146,7 +146,7 @@ const Checkout = () => {
       <div className="font-poppins text-darkGray">
         <NavBar />
 
-        <div className="container mx-auto px-20 flex flex-col lg:flex-row gap-5 justify-center items-start border-gray-300 border-t-[1px] py-10 lg:flex-nowrap">
+        <div className="container mx-auto lg:px-20 px-7 flex flex-col lg:flex-row gap-5 justify-center items-start border-gray-300 border-t-[1px] py-10 lg:flex-nowrap">
           <div className="w-full order-2 lg:order-1 lg:w-2/3">
             <form onSubmit={handleFormSubmit} className="w-full">
               <div>

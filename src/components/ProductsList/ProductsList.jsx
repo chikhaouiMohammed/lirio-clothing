@@ -61,7 +61,7 @@ const ProductsList = () => {
   };
 
   return (
-    <div className="container px-14 mx-auto pt-3">
+    <div className="container lg:px-14 px-7 mx-auto pt-3">
       {/* products */}
       {
         isLoading ? (
