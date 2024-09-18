@@ -349,7 +349,7 @@ const EditProduct = () => {
             {/* Add New Size */}
             <div className="flex flex-col">
               <label className="font-semibold mb-2">Add Size</label>
-              <div className="flex space-x-4">
+              <div className="flex flex-col gap-5 space-x-4">
                 <input
                   type="text"
                   className="p-3 border rounded-lg flex-1 focus:outline-none focus:border-blue-500"
@@ -370,7 +370,7 @@ const EditProduct = () => {
             {/* Size-Stock Relation */}
             <div className="flex flex-col">
               <label className="font-semibold mb-2">Add Stock for Selected Size</label>
-              <div className="flex space-x-4">
+              <div className="flex flex-col gap-5 space-x-4">
                 <select
                   className="p-3 border rounded-lg flex-1 focus:outline-none focus:border-blue-500"
                   value={selectedSize}
