@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { db } from '../Data/firebase';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { BeatLoader } from 'react-spinners';
@@ -19,8 +19,6 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const navigate = useNavigate();
 
-  console.log(selectedSize)
-  console.log(product)
   
 
   useEffect(() => {
@@ -134,25 +132,45 @@ const ProductDetails = () => {
               <div className="md:mb-10 overflow-hidden rounded-lg">
                 <div className="block md:hidden">
                   <div className="flex overflow-x-scroll no-scrollbar space-x-4">
-                    <img src={product.images[0]} alt="Product" className="rounded-lg w-full max-w-xs" />
-                    {product.images.slice(1).map((img, index) => (
-                      <img key={index} src={img} alt={`Thumbnail ${index + 1}`} className="rounded-lg w-full max-w-xs" />
-                    ))}
+                    <div className="flex gap-3 w-full">
+                      {product.images.map((img, index) => (
+                        <Link
+                          className="cursor-pointer flex-shrink-0 w-full"
+                          to={`/product/images/${productId}`}
+                          state={{ images: product.images }}
+                          key={index}
+                        >
+                          <img
+                            src={img}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="rounded-lg w-full min-w-full object-cover"
+                          />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
-  
+
                 {/* For large devices, display images in the current grid format */}
                 <div className="hidden md:block">
-                  <img src={product.images[0]} alt="Product" className="rounded-lg" />
+                  <Link to={`/product/images/${productId}`} state={{ images: product.images }}>
+                    <img src={product.images[0]} alt="Product" className="rounded-lg" />
+                  </Link>
                   <div className="grid grid-cols-2 gap-y-4 mt-4">
                     {product.images.slice(1).map((img, index) => (
-                      <div key={index} className="max-w-[250px] overflow-hidden rounded-lg">
+                      <Link
+                        to={`/product/images/${productId}`}
+                        state={{ images: product.images }}
+                        key={index}
+                        className="max-w-[250px] overflow-hidden rounded-lg"
+                      >
                         <img className="w-full" src={img} alt={`Thumbnail ${index + 1}`} />
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
+
             </div>
             {/* Product Details */}
             <div className="flex flex-col justify-start items-start px-4 md:px-10 w-full">
@@ -256,6 +274,11 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
+          </div>
+          {/* description */}
+          <div className=' w-full'>
+                  <h3 className=' text-2xl font-bold mb-4'>Product description :</h3>
+                  <p className=' font-roboto text-lg leading-5'>{product.description}.</p>
           </div>
   
           {/* Related Products Section */}

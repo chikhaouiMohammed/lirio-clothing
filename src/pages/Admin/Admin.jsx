@@ -71,6 +71,10 @@ const Admin = () => {
                             <div><MdOutlineShoppingBag style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">My Shop</a>
                         </Link>
+                        <Link to='/admin/categories-sizes' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin/categories-sizes' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                            <div><AiOutlineProduct style={{ width: '1.7rem', height: '1.7rem' }} /></div>
+                            <a href="">Categories & Sizes</a>
+                        </Link>
                         <botton onClick={handleLogout} className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-red-600 w-full p-2 rounded-xl`}>
                             <div><MdOutlineShoppingBag style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">Logout</a>

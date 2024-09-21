@@ -65,21 +65,6 @@ const EditProduct = () => {
     fetchData();
   }, [id]);
 
-  // Add category to Firestore
-  const handleAddCategory = async () => {
-    if (newCategory && !categories.includes(newCategory)) {
-      try {
-        await addDoc(collection(db, 'categories'), { name: newCategory });
-        setCategories(prev => [...prev, newCategory]);
-        setCategory(newCategory);
-        setNewCategory('');
-        toast.success('Category added successfully!');
-      } catch (e) {
-        console.error('Error adding category:', e);
-        toast.error('Error adding category.');
-      }
-    }
-  };
 
   // Add color with size-stock relationship
   const handleAddColor = () => {
@@ -250,20 +235,6 @@ const EditProduct = () => {
                 <option key={cat} value={cat}>{cat}</option>
               ))}
             </select>
-            <input
-              type="text"
-              className="p-3 border rounded-lg w-full focus:outline-none focus:border-blue-500"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              placeholder="Add new category"
-            />
-            <button
-              type="button"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
-              onClick={handleAddCategory}
-            >
-              Add
-            </button>
           </div>
         </div>
   

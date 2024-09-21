@@ -111,14 +111,14 @@ const ProductsList = () => {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleClick(product)}
-              className="w-[250px] cursor-pointer flex flex-col justify-center items-center gap-5 overflow-hidden"
+              className=" cursor-pointer flex flex-col justify-center items-center gap-5 overflow-hidden"
             >
-              <div className="relative w-full h-auto">
+              <div className="relative w-[278px] h-[278px]">
                 {/* Image container */}
                 {product.image.length > 0 && (
                   <>
                     <img
-                      className={`rounded-2xl w-full h-auto transition-opacity duration-500 ${hoveredCard === index ? 'opacity-0' : 'opacity-100'}`}
+                      className={`rounded-2xl w-full h-full bg-cover transition-opacity duration-500 ${hoveredCard === index ? 'opacity-0' : 'opacity-100'}`}
                       src={product.image[0]}  // Default image
                       alt={product.title}
                     />

@@ -122,46 +122,54 @@ const ProductManagement = () => {
         </div>
       </div>
   
-      {/* Products List */}
-      <div className="flex flex-col justify-center items-center w-full">
-        {filteredProducts.length === 0 ? (
-          <p>No products available.</p>
-        ) : (
-          filteredProducts.map(product => (
-            <div key={product.id} className="rounded-2xl bg-gray-200 overflow-hidden w-full p-5 flex flex-col md:flex-row justify-between items-center mb-4">
-              {/* Image */}
-              <div className="w-full md:w-[200px] h-auto flex-shrink-0 mb-4 md:mb-0">
-                <img className="w-full h-full object-cover" src={(product.images && product.images[0]) || productImage} alt={product.productName} />
-              </div>
-              {/* Product Actions and Details */}
-              <div className='flex flex-col justify-center items-center gap-5 w-full px-6'>
-                {/* Text */}
-                <div className='flex flex-col justify-center w-full items-start gap-3'>
-                  <h3 className='text-xl md:text-2xl font-semibold'>Name: <span className='font-medium text-lg'>{product.productName}</span></h3>
-                  <h4 className='text-xl md:text-2xl font-semibold'>Category: <span className='font-medium text-lg'>{product.category}</span></h4>
-                </div>
-                {/* Price and Buttons */}
-                <div className='flex flex-col md:flex-row justify-between items-center w-full'>
-                  {/* Price */}
-                  <h2 className='font-montserrat text-xl md:text-2xl font-semibold'>{product.price} DZA</h2>
-                  <h2 className='font-montserrat text-xl md:text-2xl font-semibold'>Stock: <span className='font-medium font-montserrat'>{product.totalStock}</span></h2>
-                  <button 
-                    onClick={() => handleDelete(product.id)}
-                    className='bg-red-600 px-6 py-2 rounded-xl transition-all duration-300 hover:scale-105 text-white mt-4 md:mt-0'
-                  >
-                    Delete
-                  </button>
-                  <Link to={`/products/edit-product/${product.id}`} className='bg-blue-950 px-6 py-2 rounded-xl transition-all duration-300 hover:scale-105 text-white mt-4 md:mt-0'>
-                    Edit
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
+      {/* Products Table */}
+      <div className="overflow-x-auto w-full rounded-lg">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+          <thead>
+            <tr className="bg-gray-100 border-b border-gray-300">
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Image</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Name</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Category</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Price</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Stock</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-700">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center p-5">No products available.</td>
+              </tr>
+            ) : (
+              filteredProducts.map(product => (
+                <tr key={product.id} className="border-b border-gray-200">
+                  <td className="p-3">
+                    <img src={(product.images && product.images[0]) || productImage} alt={product.productName} className="w-16 h-16 object-cover rounded-lg" />
+                  </td>
+                  <td className="p-3 text-gray-800">{product.productName}</td>
+                  <td className="p-3 text-gray-800">{product.category}</td>
+                  <td className="p-3 text-gray-800">{product.price} DZA</td>
+                  <td className="p-3 text-gray-800">{product.totalStock}</td>
+                  <td className="p-3 flex gap-2">
+                    <button 
+                      onClick={() => handleDelete(product.id)}
+                      className="bg-red-600 px-4 py-2 rounded-xl text-white transition-all duration-300 hover:scale-105"
+                    >
+                      Delete
+                    </button>
+                    <Link to={`/products/edit-product/${product.id}`} className="bg-blue-950 px-4 py-2 rounded-xl text-white transition-all duration-300 hover:scale-105">
+                      Edit
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
+  
   
 };
 

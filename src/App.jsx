@@ -14,6 +14,8 @@ import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import ProtectedRoute from './pages/Admin/components/ProtectedRoute';
 import AdminLogin from './pages/Admin/components/AdminLogin/AdminLogin'
+import ProductDetailImages from './pages/ProductDetailImages';
+import CategoriesSizes from './pages/Admin/components/CategoriesSizes';
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           <Route index element={<ProductManagement />} />
           <Route path="orders" element={<OrderManagement />} />
           <Route path="social" element={<SocialMediaManagement />} />  
+          <Route path="categories-sizes" element={<CategoriesSizes />} />  
         </Route>
 
         <Route
@@ -59,9 +62,19 @@ function App() {
             </ProtectedRoute>
           }
         />
+        {/* <Route
+          path="/admin/categories-sizes"
+          element={
+            <ProtectedRoute>
+              <CategoriesSizes />
+            </ProtectedRoute>
+          }
+        /> */}
+
 
         <Route path="/my-cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/product/images/:id" element={<ProductDetailImages />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
       </Routes>
