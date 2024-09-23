@@ -153,6 +153,7 @@ const Checkout = () => {
                 <h3 className="text-xl font-semibold mb-4">Contact</h3>
                 <input
                   type="text"
+                  required
                   value={contactInfo.email}
                   onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
                   className={`p-3 border rounded-md focus:outline-none w-full border-gray-300 placeholder:font-roboto placeholder:text-sm focus:border-blue-500 ${errors.email ? 'border-red-500' : ''}`}
@@ -161,6 +162,7 @@ const Checkout = () => {
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                 <input
                   type="text"
+                  required
                   value={contactInfo.phone}
                   onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
                   className={`p-3 border rounded-md focus:outline-none w-full border-gray-300 placeholder:font-roboto placeholder:text-sm focus:border-blue-500 mt-3 ${errors.phone ? 'border-red-500' : ''}`}
@@ -174,13 +176,15 @@ const Checkout = () => {
                 <div className="w-full flex justify-center items-center gap-2">
                   <input
                     type="text"
+                    required
                     value={deliveryInfo.firstName || ''}
                     onChange={(e) => setDeliveryInfo({ ...deliveryInfo, firstName: e.target.value })}
                     className="p-3 border rounded-md focus:outline-none w-full border-gray-300 placeholder:font-roboto placeholder:text-sm focus:border-blue-500"
-                    placeholder="First Name (optional)"
+                    placeholder="First Name"
                   />
                   <input
                     type="text"
+                    required
                     value={deliveryInfo.lastName || ''}
                     onChange={(e) => setDeliveryInfo({ ...deliveryInfo, lastName: e.target.value })}
                     className="p-3 border rounded-md focus:outline-none w-full border-gray-300 placeholder:font-roboto placeholder:text-sm focus:border-blue-500"
@@ -189,6 +193,7 @@ const Checkout = () => {
                 </div>
                 <input
                   type="text"
+                  required
                   value={deliveryInfo.address || ''}
                   onChange={(e) => setDeliveryInfo({ ...deliveryInfo, address: e.target.value })}
                   className={`p-3 border mt-3 rounded-md focus:outline-none w-full border-gray-300 placeholder:font-roboto placeholder:text-sm focus:border-blue-500 ${errors.delivery ? 'border-red-500' : ''}`}

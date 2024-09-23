@@ -124,7 +124,7 @@ const ProductsList = () => {
                     />
                     {product.image.length > 1 && (
                       <img
-                        className={`rounded-2xl w-full h-auto transition-opacity duration-500 absolute top-0 left-0 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`}
+                        className={`rounded-2xl w-[278px] h-[278px] transition-opacity duration-500 absolute top-0 left-0 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`}
                         src={product.image[1]}  // Hover image
                         alt={product.title}
                       />

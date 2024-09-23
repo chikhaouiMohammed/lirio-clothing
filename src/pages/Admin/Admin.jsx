@@ -55,23 +55,23 @@ const Admin = () => {
                         <h1 className="font-poppins text-xl md:text-2xl">My Dashboard</h1>
                     </div>
                     <ul className="w-full flex flex-col items-start justify-center gap-5 font-poppins text-lg">
-                        <Link to='/admin' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                        <Link onClick={() => setisMenu(false)} to='/admin' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
                             <div><AiOutlineProduct style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">Products</a>
                         </Link>
-                        <Link to='/admin/orders' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                        <Link onClick={() => setisMenu(false)} to='/admin/orders' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
                             <div><GoTasklist style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">Orders</a>
                         </Link>
-                        <Link to='/admin/social' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                        <Link onClick={() => setisMenu(false)} to='/admin/social' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
                             <div><IoShareSocialOutline style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">Social</a>
                         </Link>
-                        <Link to='/' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                        <Link onClick={() => setisMenu(false)} to='/' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
                             <div><MdOutlineShoppingBag style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">My Shop</a>
                         </Link>
-                        <Link to='/admin/categories-sizes' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin/categories-sizes' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
+                        <Link onClick={() => setisMenu(false)} to='/admin/categories-sizes' className={`cursor-pointer flex justify-start items-center gap-8 bg-gray-100 transition-all duration-200 ${ pathName === '/admin/categories-sizes' ? ' bg-gold' : '' } hover:bg-gold w-full p-2 rounded-xl`}>
                             <div><AiOutlineProduct style={{ width: '1.7rem', height: '1.7rem' }} /></div>
                             <a href="">Categories & Sizes</a>
                         </Link>

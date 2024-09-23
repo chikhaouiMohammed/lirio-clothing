@@ -190,19 +190,55 @@ const ProductDetails = () => {
               {/* Color Dropdown */}
               <div className="mb-4 w-full">
                 <label className="block text-sm font-semibold mb-2">Color</label>
-                <select
-                  className="w-full p-3 border-[0.5px] border-gray-300 rounded-lg focus:outline-none focus:border-darkGray"
-                  value={selectedColor}
-                  onChange={(e) => setSelectedColor(e.target.value)}
-                >
-                  <option value="">Select Color</option>
+                <div className="relative">
+                  <select
+                    className="w-full p-3 border-[0.5px] border-gray-300 rounded-lg focus:outline-none focus:border-darkGray appearance-none"
+                    value={selectedColor}
+                    onChange={(e) => setSelectedColor(e.target.value)}
+                  >
+                    <option value="">Select Color</option>
+                    {product?.productColors?.map((colorObj, index) => (
+                      <option key={index} value={colorObj.colorName}>
+                        {colorObj.colorName}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    <svg
+                      className="w-5 h-5 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m-4 12V5" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Color Swatches */}
+                <div className="flex gap-2 mt-2">
                   {product?.productColors?.map((colorObj, index) => (
-                    <option key={index} value={colorObj.colorName}>
-                      {colorObj.colorName}
-                    </option>
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setSelectedColor(colorObj.colorName);
+                        setSelectedSize(''); // Reset selected size when color changes
+                      }}
+                      className={`flex items-center cursor-pointer ${selectedColor === colorObj.colorName ? 'font-semibold' : ''}`}
+                    >
+                      <div
+                        className="w-5 h-5 rounded-full mr-2"
+                        style={{ backgroundColor: colorObj.colorCode }}
+                      ></div>
+                      <span>{colorObj.colorName}</span>
+                    </div>
                   ))}
-                </select>
+                </div>
               </div>
+
+
+
   
               {/* Size Dropdown */}
               <div className="mb-4 w-full">
