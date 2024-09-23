@@ -148,7 +148,6 @@ const EditProduct = () => {
         return total + colorStock;
       }, 0);
 
-      const discountPrice = discount ? price - (price * (discount / 100)) : price;
       
       const updatedProduct = {
         productName,
@@ -158,7 +157,7 @@ const EditProduct = () => {
         images: imageUrls,
         price: parseFloat(price),
         discount: parseFloat(discount),
-        finalPrice: parseFloat(discountPrice),
+        finalPrice: parseFloat(discount),
         totalStock // Add totalStock to the updated product data
       };
 
@@ -327,7 +326,7 @@ const EditProduct = () => {
           </div>
 
           <div className="flex flex-col">
-            <label className="font-semibold mb-2">Discount (%)</label>
+            <label className="font-semibold mb-2">Discount</label>
             <input
               type="number"
               className="p-3 border rounded-lg focus:outline-none"
