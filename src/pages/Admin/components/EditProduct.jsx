@@ -269,49 +269,49 @@ const EditProduct = () => {
           </div>
 
           <div className="flex flex-col">
-  <label className="font-semibold mb-2">Product Images</label>
+            <label className="font-semibold mb-2">Product Images</label>
 
-  {/* Image Upload Section */}
-  <div className="border border-dashed border-gray-400 rounded-lg p-4 relative bg-gray-50 cursor-pointer hover:bg-gray-100 transition-all">
-    <input
-      type="file"
-      className="absolute inset-0 opacity-0 cursor-pointer"
-      multiple
-      onChange={(e) => setImages(Array.from(e.target.files))}
-    />
-    <p className="text-center text-gray-500">
-      Click to upload images (Max 5 images)
-    </p>
-  </div>
+            {/* Image Upload Section */}
+            <div className="border border-dashed border-gray-400 rounded-lg p-4 relative bg-gray-50 cursor-pointer hover:bg-gray-100 transition-all">
+              <input
+                type="file"
+                className="absolute inset-0 opacity-0 cursor-pointer"
+                multiple
+                onChange={(e) => setImages(Array.from(e.target.files))}
+              />
+              <p className="text-center text-gray-500">
+                Click to upload images
+              </p>
+            </div>
 
-  {/* Preview Added Images */}
-  {images.length > 0 && (
-    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {images.map((image, index) => {
-        const imageUrl = typeof image === 'string' ? image : URL.createObjectURL(image);
-        return (
-          <div key={index} className="relative">
-            {/* X button to remove image */}
-            <button
-              type="button"
-              className="absolute top-0 right-0 bg-red-500 text-white w-6 h-6 flex justify-center items-center rounded-full focus:outline-none hover:bg-red-600 transition-all"
-              onClick={() => handleRemoveImage(index)}
-            >
-              X
-            </button>
+            {/* Preview Added Images */}
+            {images.length > 0 && (
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {images.map((image, index) => {
+                  const imageUrl = typeof image === 'string' ? image : URL.createObjectURL(image);
+                  return (
+                    <div key={index} className="relative">
+                      {/* X button to remove image */}
+                      <button
+                        type="button"
+                        className="absolute top-0 right-0 bg-red-500 text-white w-6 h-6 flex justify-center items-center rounded-full focus:outline-none hover:bg-red-600 transition-all"
+                        onClick={() => handleRemoveImage(index)}
+                      >
+                        X
+                      </button>
 
-            {/* Image Preview */}
-            <img
-              src={imageUrl}
-              alt={`Preview ${index + 1}`}
-              className="w-full h-40 object-cover rounded-lg shadow-md"
-            />
+                      {/* Image Preview */}
+                      <img
+                        src={imageUrl}
+                        alt={`Preview ${index + 1}`}
+                        className="w-full h-40 object-cover rounded-lg shadow-md"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-        );
-      })}
-    </div>
-  )}
-</div>
 
 
           <div className="flex flex-col">

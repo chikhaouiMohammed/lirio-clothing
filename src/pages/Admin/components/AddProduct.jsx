@@ -217,7 +217,7 @@ const AddProduct = () => {
                     onChange={(e) => setImages(Array.from(e.target.files))}
                   />
                   <p className="text-center text-gray-500">
-                    Click to upload images (Max 5 images)
+                    Click to upload images
                   </p>
                 </div>
 
